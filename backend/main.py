@@ -1,10 +1,16 @@
 from fastapi import FastAPI, UploadFile, File
 from PyPDF2 import PdfReader
 
-from .chunking import chunk_text
-from .embedding_service import generate_embedding
-from .vector_store import search_embeddings, store_embeddings
-from .rag_service import generate_answer
+try:
+    from .chunking import chunk_text
+    from .embedding_service import generate_embedding
+    from .vector_store import search_embeddings, store_embeddings
+    from .rag_service import generate_answer
+except ImportError:
+    from backend.chunking import chunk_text
+    from backend.embedding_service import generate_embedding
+    from backend.vector_store import search_embeddings, store_embeddings
+    from backend.rag_service import generate_answer
 
 
 app = FastAPI()
