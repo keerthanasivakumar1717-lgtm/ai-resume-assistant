@@ -11,10 +11,10 @@ try:
 	from .rag_service import generate_answer
 	from .vector_store import search_embeddings, store_embeddings
 except ImportError:
-	from backend.chunking import chunk_text
-	from backend.embedding_service import generate_embedding
-	from backend.rag_service import generate_answer
-	from backend.vector_store import search_embeddings, store_embeddings
+	from chunking import chunk_text
+	from embedding_service import generate_embedding
+	from rag_service import generate_answer
+	from vector_store import search_embeddings, store_embeddings
 
 
 load_dotenv(Path(__file__).resolve().with_name(".env"))

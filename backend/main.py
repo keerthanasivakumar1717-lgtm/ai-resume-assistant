@@ -7,10 +7,10 @@ try:
     from .vector_store import search_embeddings, store_embeddings
     from .rag_service import generate_answer
 except ImportError:
-    from backend.chunking import chunk_text
-    from backend.embedding_service import generate_embedding
-    from backend.vector_store import search_embeddings, store_embeddings
-    from backend.rag_service import generate_answer
+    from chunking import chunk_text
+    from embedding_service import generate_embedding
+    from vector_store import search_embeddings, store_embeddings
+    from rag_service import generate_answer
 
 
 app = FastAPI()
@@ -89,7 +89,10 @@ def search_resume(question: str):
 
 
 if __name__ == "__main__":
-    from backend import streamlit_app
+    try:
+        from backend import streamlit_app
+    except ModuleNotFoundError:
+        import streamlit_app
 
 
 
