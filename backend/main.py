@@ -88,4 +88,8 @@ def search_resume(question: str):
     }
 
 
+if __name__ == "__main__":
+    from backend import streamlit_app
+
+
 
