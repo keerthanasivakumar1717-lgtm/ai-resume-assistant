@@ -20,7 +20,7 @@ def store_embeddings(chunks, embeddings):
     for i in range(len(chunks)):
         ids.append(f"chunk_{i}")
 
-    collection.add(
+    collection.upsert(
         ids=ids,
         documents=chunks,
         embeddings=embeddings

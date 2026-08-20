@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 from PyPDF2 import PdfReader
 from dotenv import load_dotenv
@@ -48,6 +50,8 @@ st.markdown(
 )
 
 st.sidebar.markdown("## 📤 Upload Resume")
+if not os.getenv("GEMINI_API_KEY"):
+	st.sidebar.warning("GEMINI_API_KEY is not configured. Add it to a .env file in the project root before processing a resume.")
 uploaded_file = st.sidebar.file_uploader("Choose a PDF file", type=["pdf"])
 
 if uploaded_file and st.sidebar.button("📤 Process Resume", use_container_width=True):
@@ -87,6 +91,8 @@ if not st.session_state.resume_uploaded:
 		'<div class="info-box"><strong>📌 Getting Started:</strong><br>Upload a PDF resume using the sidebar, process it, then ask questions about it.</div>',
 		unsafe_allow_html=True,
 	)
+	if not os.getenv("GEMINI_API_KEY"):
+		st.error("Questions are unavailable until GEMINI_API_KEY is configured.")
 else:
 	question = st.text_input("Enter your question:", placeholder="E.g., What are my technical skills?")
 	if st.button("🔍 Search & Answer", disabled=not question, use_container_width=True):
