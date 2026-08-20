@@ -45,7 +45,7 @@ say that the information is not available in the resume.
 
     try:
         response = _get_client().models.generate_content(
-            model="gemini-3.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt
         )
     except Exception as error:
@@ -53,7 +53,7 @@ say that the information is not available in the resume.
             raise
         _reset_client()
         response = _get_client().models.generate_content(
-            model="gemini-3.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt
         )
 

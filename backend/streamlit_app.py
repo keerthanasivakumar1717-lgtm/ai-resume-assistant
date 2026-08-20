@@ -5,13 +5,19 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from dotenv import load_dotenv
 
-from chunking import chunk_text
-from embedding_service import generate_embedding
-from rag_service import generate_answer
-from vector_store import search_embeddings, store_embeddings
+from .chunking import chunk_text
+from .embedding_service import generate_embedding
+from .rag_service import generate_answer
+from .vector_store import search_embeddings, store_embeddings
 
 
 load_dotenv(Path(__file__).resolve().with_name(".env"))
+
+try:
+	if not os.getenv("GEMINI_API_KEY") and st.secrets.get("GEMINI_API_KEY"):
+		os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
+except (FileNotFoundError, KeyError):
+	pass
 
 st.set_page_config(
 	page_title="AI Resume Assistant",
