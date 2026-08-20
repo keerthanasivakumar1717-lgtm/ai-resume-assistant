@@ -1,0 +1,8 @@
+FastAPI
+Uvicorn
+PyPDF2
+google-genai
+ChromaDB
+Streamlit
+python-dotenv
+python-multipart
