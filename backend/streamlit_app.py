@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import streamlit as st
 from PyPDF2 import PdfReader
@@ -10,7 +11,7 @@ from rag_service import generate_answer
 from vector_store import search_embeddings, store_embeddings
 
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().with_name(".env"))
 
 st.set_page_config(
 	page_title="AI Resume Assistant",
